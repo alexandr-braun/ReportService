@@ -1,0 +1,24 @@
+# This is a generated file. Not intended for manual editing.
+version: "3.4"
+services:
+  reportservice.presentation:
+    build:
+      context: "/Users/albraun/Downloads/test/ReportService"
+      dockerfile: "ReportService.Presentation/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net5.0/ReportService.Presentation.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+      NUGET_PACKAGES: "/Users/albraun/.nuget/packages"
+      NUGET_FALLBACK_PACKAGES: "/Users/albraun/.nuget/packages"
+    image: "reportservice.presentation:dev"
+    ports: []
+    volumes:
+    - "/Users/albraun/.nuget/packages:/root/.nuget/fallbackpackages"
+    - "/Users/albraun/Downloads/test/ReportService/ReportService.Presentation:/app:rw"
+    - "/Users/albraun/Downloads/test/ReportService:/src:rw"
+    working_dir: "/app"

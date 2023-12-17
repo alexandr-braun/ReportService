@@ -1,0 +1,27 @@
+version: '3.4'
+
+services:
+  reportservice.presentation:
+    image: reportservice.presentation
+    build:
+      context: .
+      dockerfile: ReportService.Presentation/Dockerfile
+    networks:
+      - reportservice-network
+  
+  database:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: mockDb
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ./Scripts/InitMockDb.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - reportservice-network
+
+networks:
+  reportservice-network:
+    driver: bridge
